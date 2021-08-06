@@ -7,7 +7,7 @@ const Navigation = () => {
   const [menuData, setMenuData] = useState([]);
   useEffect(() => {
     axios({
-      url: "/navdata",
+      url: "/home",
       method: "get"
     })
       .then((response) => {
