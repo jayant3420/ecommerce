@@ -1,7 +1,15 @@
 const express = require("express");
-const app = express.Router();
-const controller = require("../controllers/useController");
+const navRoutes = express.Router();
+const model = require("./../models/model");
 
-app.get("/", controller.NavData);
+navRoutes.get("/", (req, res) => {
+  model.navigation.find((err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 
-module.exports = app;
+module.exports = navRoutes;
