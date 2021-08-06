@@ -5,18 +5,15 @@ import axios from "axios";
 
 const Navigation = () => {
   const [menuData, setMenuData] = useState([]);
+  const getNavData = () => {
+    axios
+      .get("/home")
+      .then((response) => setMenuData(response.data))
+      .catch((error) => console.log(error));
+  };
+
   useEffect(() => {
-    axios({
-      url: "/home",
-      method: "get"
-    })
-      .then((response) => {
-        console.log(response);
-        setMenuData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    getNavData();
   }, []);
   return (
     <>
