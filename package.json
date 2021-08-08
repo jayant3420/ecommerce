@@ -6,8 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build && npm run client",
     "client": "cd client && npm start",
     "dev": "concurrently -n 'server, client' -c 'red, green' \"nodemon server.js\" \"npm run client\""
   },
@@ -15,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^6.2.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.13.5",
     "morgan": "^1.10.0",
