@@ -1,10 +1,14 @@
 import React from "react";
+import "./homestyle.css";
+import Cartdetails from "./cartdetails";
+import Hometitle from "./hometitle";
 
 const index = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <>
+      <Hometitle />
+      <Cartdetails />
+    </>
   );
 };
 

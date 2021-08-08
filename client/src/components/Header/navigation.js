@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import url from "./../Url/url";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -7,7 +8,7 @@ const Navigation = () => {
   const [menuData, setMenuData] = useState([]);
   const getNavData = () => {
     axios
-      .get("/home")
+      .get(`${url}/home`)
       .then((response) => setMenuData(response.data))
       .catch((error) => console.log(error));
   };
