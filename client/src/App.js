@@ -3,7 +3,11 @@ import Header from "./components/Header/index";
 import "./App.css";
 
 const App = () => {
-  return <Header />;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
 export default App;

@@ -1,13 +1,25 @@
 import React from "react";
+import "./storestyle.css";
+import Footer from "../Footer/footer";
+import StoreHead from "./StoreHead";
+import BestSeller from "./BestSeller";
+import IphoneAdvertise from "./IphoneAdvertise";
+import Facilities from "./Facilities";
+import FeaturedProducts from "./FeaturedProducts";
+import AdContainer from "../ProductSearch/AdContainer";
 
-const index = () => {
+const Index = () => {
   return (
     <>
-      <div>
-        <h1>Store</h1>
-      </div>
+      <StoreHead />
+      <BestSeller />
+      <IphoneAdvertise />
+      <AdContainer screen={"mobile"} />
+      <Facilities />
+      <FeaturedProducts />
+      <Footer />
     </>
   );
 };
 
-export default index;
+export default Index;

@@ -1,37 +1,58 @@
 import React from "react";
 import Header from "./header";
 import Navigation from "./navigation";
-import Home from "./../Home/index";
-import Store from "./../Store/index";
-import Iphone from "./../Iphone/index";
-import Ipad from "./../Ipad/index";
-import Macbook from "./../Macbook/index";
-import Accesories from "./../Accesories/index";
+import Home from "./../Home";
+import Store from "./../Store";
+import ProductSearch from "../ProductSearch";
 import {
   BrowserRouter as Router,
   Redirect,
   Route,
   Switch
 } from "react-router-dom";
+import NavMobileView from "./NavMobileView";
+import Checkout from "../Home/Checkout";
 
-const index = () => {
+const Index = () => {
   return (
     <>
-      <Header />
-      <Router>
-        <Navigation />
-        <Switch>
-          <Route path="/home" component={Home} />
-          <Route path="/store" component={Store} />
-          <Route path="/iphone" component={Iphone} />
-          <Route path="/ipad" component={Ipad} />
-          <Route path="/macbook" component={Macbook} />
-          <Route path="/accesories" component={Accesories} />
-          <Redirect to="/home" />
-        </Switch>
-      </Router>
+      <Checkout />
+      <div id="root-container">
+        <Header />
+        <Router>
+          <Navigation />
+          <div className="main-container" id="main-container">
+            <Switch>
+              <Route path="/home" component={Home} />
+              <Route path="/store" component={Store} />
+              <Route
+                path="/iphone/:subcategory"
+                component={() => <ProductSearch category={"iphone"} />}
+              />
+              <Route
+                path="/ipad/:subcategory"
+                component={() => <ProductSearch category={"ipad"} />}
+              />
+              <Route
+                path="/accessories/:subcategory"
+                component={() => <ProductSearch category={"accessories"} />}
+              />
+              <Route
+                path="/macbook/:subcategory"
+                component={() => <ProductSearch category={"macbook"} />}
+              />
+              <Route
+                path="/apple watch/:subcategory"
+                component={() => <ProductSearch category={"apple watch"} />}
+              />
+              <Redirect to="/home" />
+            </Switch>
+          </div>
+        </Router>
+        <NavMobileView />
+      </div>
     </>
   );
 };
 
-export default index;
+export default Index;

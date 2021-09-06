@@ -1,37 +1,54 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import url from "./../Url/url";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchNavigationData } from "../actions/navigation";
+import NavStoreDescription from "./NavStoreDescription";
+import NavItemExploreContainer from "./NavItemExploreContainer";
 
 const Navigation = () => {
-  const [menuData, setMenuData] = useState([]);
-  const getNavData = () => {
-    axios
-      .get(`${url}/home`)
-      .then((response) => setMenuData(response.data))
-      .catch((error) => console.log(error));
-  };
+  const storedata = useSelector((state) => state.navdata);
+  const productsDetail = useSelector((state) => state.productsDetail);
+  const products = productsDetail.products;
+  const navbardata = storedata.items;
 
+  const dispatch = useDispatch();
   useEffect(() => {
-    getNavData();
+    dispatch(fetchNavigationData());
   }, []);
+
   return (
     <>
-      <div className="navigation-container">
+      <div className="navigation-container" id="navigation-container">
         <p>iSHOP</p>
-        <div className="navigation-bar">
+        <div className="navigation-bar" id="navigation-bar">
           <ul className="nav-ul">
-            {menuData.map((item, index) => {
+            {navbardata.map((item, index) => {
               return (
-                <NavLink
-                  to={`/${item.name}`}
-                  className="nav-link"
-                  activeClassName="selected"
-                  key={index}
-                >
-                  <li>{item.name}</li>
-                </NavLink>
+                <li key={index}>
+                  <NavLink
+                    to={`/${item.name}`}
+                    className="nav-link"
+                    activeClassName="selected"
+                    key={index}
+                  >
+                    <span className="ni">{item.name}</span>
+                  </NavLink>
+                  {item.name === "store" ? (
+                    <NavStoreDescription
+                      class={item.data}
+                      products={products}
+                    />
+                  ) : item.name !== "home" && item.name !== "store" ? (
+                    <NavItemExploreContainer
+                      category={item.name}
+                      subcategories={item.data}
+                      products={products.filter((product) => {
+                        return product.category === item.name;
+                      })}
+                    />
+                  ) : null}
+                </li>
               );
             })}
           </ul>

@@ -4,7 +4,9 @@
   box-sizing: border-box;
 }
 
-html {
+html,
+body,
+input {
   font-family: "Rubik", sans-serif;
   font-family: "Work Sans", sans-serif;
 }
@@ -17,4 +19,35 @@ html {
   --color-red: #ff0000;
   --color-lightgreen: #4aee22;
   --color-lightblue: rgb(31, 138, 226);
+  --color-green: green;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#root {
+  margin-bottom: 5rem;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-space-btw {
+  justify-content: space-between;
+}
+
+.flex-space-evenly {
+  justify-content: space-evenly;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
 }
